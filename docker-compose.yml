@@ -1,42 +1,43 @@
 version: '3'
 
-
 volumes:
-  postgresql_etc:
-  postgresql_log:
-  postgresql_data:
+  workshop_postgresql_etc:
+  workshop_postgresql_log:
+  workshop_postgresql_data:
+  workshop_liferay_data:
 
 services:
 
-  _liferay-base:
+  _workshop_liferay-base:
     image: liferay-base:7.4.3.102
     build:
       context: liferay-base
       dockerfile: Dockerfile
 
-  portal:
+  workshop_portal:
     container_name: workshop_portal
     build:
       context: portal
       dockerfile: Dockerfile
     depends_on:
-      - _liferay-base
-      - database
+      - _workshop_liferay-base
+      - workshop_database
     ports:
       - "8000:8000"
       - "8080:8080"
     volumes:
       - ./portal/deploy:/opt/liferay/deploy
+      - workshop_liferay_data:/opt/liferay/data/
 
-  database:
-    container_name: workshop_postgresql
+  workshop_database:
+    container_name: workshop_database
     image: postgres:11.22-alpine
     ports:
       - "5432:5432"
     volumes:
-      - postgresql_etc:/etc/postgresql/
-      - postgresql_log:/var/log/postgresql/
-      - postgresql_data:/var/lib/postgresql/
+      - workshop_postgresql_etc:/etc/postgresql/
+      - workshop_postgresql_log:/var/log/postgresql/
+      - workshop_postgresql_data:/var/lib/postgresql/
       - ./database/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     environment:
       INIT: "TRUE"

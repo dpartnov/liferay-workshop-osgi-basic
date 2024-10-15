@@ -1,0 +1,4 @@
+Bundle-Name: hello-world-api
+Bundle-SymbolicName: com.liferay.workshop.helloworld.api
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.workshop.helloworld.api

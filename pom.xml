@@ -12,6 +12,10 @@
         <liferay.bom.version>7.4.3.102</liferay.bom.version>
     </properties>
 
+    <modules>
+        <module>portal/modules</module>
+    </modules>
+
     <dependencyManagement>
         <dependencies>
             <!-- Liferay BOM -->
