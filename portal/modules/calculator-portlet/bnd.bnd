@@ -1,0 +1,9 @@
+Bundle-Name: greeting-portlet
+Bundle-SymbolicName: com.liferay.workshop.greeting
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.workshop.greeting.constants
+-jsp: *.jsp,*.jspf,*.jspx
+-metatype: *
+-plugin.jsp: com.liferay.ant.bnd.jsp.JspAnalyzerPlugin
+-plugin.metatype: com.liferay.ant.bnd.metatype.MetatypePlugin
+-plugin.resourcebundle: com.liferay.ant.bnd.resource.bundle.ResourceBundleLoaderAnalyzerPlugin

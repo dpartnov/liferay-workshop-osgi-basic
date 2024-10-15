@@ -10,7 +10,10 @@ import org.osgi.service.component.annotations.Component;
 public class HelloWorldApiImpl implements HelloWorldApi {
 
     @Override
-    public void hello(String name) {
-        System.out.printf("Hello %s !", name);
+    public String hello(String name) {
+        String result = String.format("Hello %s !", name);
+
+        System.out.println(result);
+        return result;
     }
 }

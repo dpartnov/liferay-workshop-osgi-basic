@@ -6,5 +6,5 @@ import aQute.bnd.annotation.ProviderType;
 @ProviderType
 public interface HelloWorldApi {
 
-    void hello(String name);
+    String hello(String name);
 }

@@ -14,6 +14,8 @@
 
     <modules>
         <module>hello-world-api</module>
+<!--        <module>hello-portlet</module>-->
+        <module>calculator-portlet</module>
     </modules>
 
     <build>
