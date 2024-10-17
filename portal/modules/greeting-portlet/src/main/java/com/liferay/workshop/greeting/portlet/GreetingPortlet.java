@@ -13,9 +13,7 @@ import java.io.IOException;
 import static com.liferay.workshop.greeting.constants.GreetingPortletKeys.ATTR_RESULT;
 import static com.liferay.workshop.greeting.constants.GreetingPortletKeys.ATTR_SHOW_BUTTON;
 
-/**
- * @author dpart
- */
+
 @Component(
         immediate = true,
         property = {
