@@ -11,9 +11,6 @@ public class HelloWorldApiImpl implements HelloWorldApi {
 
     @Override
     public String hello(String name) {
-        String result = String.format("Hello %s !", name);
-
-        System.out.println(result);
-        return result;
+        return String.format("Hello %s !", name);
     }
 }
