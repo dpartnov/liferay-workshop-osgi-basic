@@ -17,7 +17,6 @@ services:
   workshop_portal:
     container_name: workshop_portal
     build:
-      context: portal
       dockerfile: Dockerfile
     depends_on:
       - _workshop_liferay-base
@@ -26,7 +25,7 @@ services:
       - "8000:8000"
       - "8080:8080"
     volumes:
-      - ./portal/deploy:/opt/liferay/deploy
+      - ./deploy:/opt/liferay/deploy
       - workshop_liferay_data:/opt/liferay/data/
 
   workshop_database:
