@@ -40,6 +40,8 @@ public class GreetingPortlet extends MVCPortlet {
             renderRequest.setAttribute(ATTR_SHOW_BUTTON, true);
         }
 
+
+
         super.doView(renderRequest, renderResponse);
     }
 
