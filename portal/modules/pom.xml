@@ -16,6 +16,8 @@
     <modules>
         <module>hello-world-api</module>
         <module>greeting-portlet</module>
+        <module>holiday-api-client</module>
+        <module>holiday-portlet</module>
     </modules>
 
     <build>
