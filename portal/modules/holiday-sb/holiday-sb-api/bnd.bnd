@@ -1,0 +1,9 @@
+Bundle-Name: holiday-sb-api
+Bundle-SymbolicName: com.liferay.workshop.holiday.sb.api
+Bundle-Version: 1.0
+Export-Package:\
+	com.liferay.workshop.holiday.sb.exception,\
+	com.liferay.workshop.holiday.sb.model,\
+	com.liferay.workshop.holiday.sb.service,\
+	com.liferay.workshop.holiday.sb.service.persistence
+-includeresource: META-INF/service.xml=../holiday-sb-service/service.xml

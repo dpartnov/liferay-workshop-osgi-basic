@@ -76,6 +76,46 @@
     <build>
         <finalName>${project.artifactId}</finalName>
 
+<!--        <pluginManagement>-->
+<!--            <plugins>-->
+<!--                <plugin>-->
+<!--                    <groupId>com.liferay</groupId>-->
+<!--                    <artifactId>com.liferay.portal.tools.service.builder</artifactId>-->
+<!--                    <version>1.0.473</version>-->
+<!--                    <configuration>-->
+<!--                        <apiDirName>../basic-api/src/main/java</apiDirName>-->
+<!--                        <autoImportDefaultReferences>true</autoImportDefaultReferences>-->
+<!--                        <autoNamespaceTables>true</autoNamespaceTables>-->
+<!--                        <buildNumberIncrement>true</buildNumberIncrement>-->
+<!--                        <hbmFileName>src/main/resources/META-INF/module-hbm.xml</hbmFileName>-->
+<!--                        <implDirName>src/main/java</implDirName>-->
+<!--                        <inputFileName>service.xml</inputFileName>-->
+<!--                        <modelHintsFileName>src/main/resources/META-INF/portlet-model-hints.xml</modelHintsFileName>-->
+<!--                        <mergeModelHintsConfigs>src/main/resources/META-INF/portlet-model-hints.xml</mergeModelHintsConfigs>-->
+<!--                        <osgiModule>true</osgiModule>-->
+<!--                        <propsUtil>com.liferay.blade.samples.servicebuilder.service.util.PropsUtil</propsUtil>-->
+<!--                        <resourcesDirName>src/main/resources</resourcesDirName>-->
+<!--                        <springFileName>src/main/resources/META-INF/spring/module-spring.xml</springFileName>-->
+<!--                        <springNamespaces>beans,osgi</springNamespaces>-->
+<!--                        <sqlDirName>src/main/resources/META-INF/sql</sqlDirName>-->
+<!--                        <sqlFileName>tables.sql</sqlFileName>-->
+<!--                        <testDirName>src/main/test</testDirName>-->
+<!--                    </configuration>-->
+<!--                </plugin>-->
+
+<!--                <plugin>-->
+<!--                    <groupId>com.liferay</groupId>-->
+<!--                    <artifactId>com.liferay.portal.tools.wsdd.builder</artifactId>-->
+<!--                    <version>1.0.16</version>-->
+<!--                    <configuration>-->
+<!--                        <inputFileName>service.xml</inputFileName>-->
+<!--                        <outputDirName>src/main/java</outputDirName>-->
+<!--                        <serverConfigFileName>src/main/resources/server-config.wsdd</serverConfigFileName>-->
+<!--                    </configuration>-->
+<!--                </plugin>-->
+<!--            </plugins>-->
+<!--        </pluginManagement>-->
+
         <plugins>
             <plugin>
                 <groupId>biz.aQute.bnd</groupId>
