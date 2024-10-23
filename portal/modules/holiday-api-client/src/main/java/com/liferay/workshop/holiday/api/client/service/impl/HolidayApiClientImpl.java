@@ -16,11 +16,24 @@ import java.net.URL;
 )
 public class HolidayApiClientImpl implements HolidayApiClient {
 
+    @Override
+    public HolidayApiResponse checkHolidayByDate(String date) {
+        return sendHolidayRequest(date);
+    }
 
     @Override
     public HolidayApiResponse checkHolidayToday() {
+        return sendHolidayRequest(null);
+    }
+
+    private HolidayApiResponse sendHolidayRequest(String dayParameter) {
         try {
-            URL url = new URL("https://svatkyapi.cz/api/day"); //TODO configure via Portal properties
+            String requestUrl = "https://svatkyapi.cz/api/day";
+            if (dayParameter != null && !dayParameter.isBlank()) {
+                requestUrl += "/" + dayParameter;
+            }
+
+            URL url = new URL(requestUrl); //TODO configure via Portal properties
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("GET");
             int responseCode = httpURLConnection.getResponseCode();

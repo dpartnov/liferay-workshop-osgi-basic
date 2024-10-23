@@ -2,21 +2,24 @@
 
 <%@ include file="./init.jsp" %>
 
-<portlet:actionURL var="greetingUrl" name="<%= HolidayPortletKeys.GREETING_ACTION %>">
+<portlet:actionURL var="holidayUrl" name="<%= HolidayPortletKeys.HOLIDAY_ACTION %>">
 </portlet:actionURL>
 
-<aui:form action="${greetingUrl}" method="post" name="greetingForm">
-    <aui:input name="<%= HolidayPortletKeys.ATTR_USER_NAME %>"
+<aui:form action="${holidayUrl}" method="post" name="dateForm">
+    <aui:input name="<%= HolidayPortletKeys.ATTR_DATE %>"
                type="text"
                required="true"
-               label="Enter your name:"
-               value="${userName}">
+               label="Enter date in format YYYY-MM-DD:"
+               value="${date}">
     </aui:input>
 
-    <c:if test="${showButton}">
-        <aui:button name="submitButton" type="submit" value="Send" />
-    </c:if>
+    <liferay-ui:error key="error" message="Invalid date format!" />
 
-    <b><liferay-ui:message key=""/> <c:out value="${result}"/></b>
+    <aui:button name="submitButton" type="submit" value="Send" />
+
+    <p>
+    	<b><liferay-ui:message key="Is holiday:"/> <c:out value="${resultIsHoliday}" /></b><br>
+    	<b><liferay-ui:message key="Holiday name:"/> <c:out value="${resultHolidayName}" /></b><br>
+    </p>
 
 </aui:form>

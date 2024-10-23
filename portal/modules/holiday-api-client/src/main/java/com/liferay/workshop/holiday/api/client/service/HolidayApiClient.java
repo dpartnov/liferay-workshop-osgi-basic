@@ -9,4 +9,6 @@ import com.liferay.workshop.holiday.api.client.dto.HolidayApiResponse;
 public interface HolidayApiClient {
 
     HolidayApiResponse checkHolidayToday();
+
+    HolidayApiResponse checkHolidayByDate(String date);
 }
