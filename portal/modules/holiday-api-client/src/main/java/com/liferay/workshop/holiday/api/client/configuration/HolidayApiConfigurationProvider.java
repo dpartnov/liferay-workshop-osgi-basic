@@ -5,5 +5,5 @@ import aQute.bnd.annotation.ProviderType;
 @ProviderType
 public interface HolidayApiConfigurationProvider {
 
-    String holidayApiBaseUrl();
+    String getHolidayApiBaseUrl();
 }

@@ -5,6 +5,8 @@
 <portlet:actionURL var="holidayUrl" name="<%= HolidayPortletKeys.HOLIDAY_ACTION %>">
 </portlet:actionURL>
 
+<h1>Holidays check</h1>
+
 <aui:form action="${holidayUrl}" method="post" name="dateForm">
     <aui:input name="<%= HolidayPortletKeys.ATTR_DATE %>"
                type="text"

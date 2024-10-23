@@ -2,4 +2,3 @@ Bundle-Name: holiday-api-client
 Bundle-SymbolicName: com.liferay.workshop.holiday.api.client
 Bundle-Version: 1.0.0
 Export-Package: com.liferay.workshop.holiday.api.client.service, com.liferay.workshop.holiday.api.client.dto
--metatype: *

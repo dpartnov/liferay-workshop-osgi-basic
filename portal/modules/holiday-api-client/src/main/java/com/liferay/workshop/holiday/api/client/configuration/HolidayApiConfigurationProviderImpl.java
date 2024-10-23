@@ -15,16 +15,16 @@ import java.util.Map;
 @Designate(ocd = HolidayApiConfiguration.class)
 public class HolidayApiConfigurationProviderImpl implements HolidayApiConfigurationProvider {
 
-    private volatile HolidayApiConfiguration configuration;
+    private HolidayApiConfiguration configuration;
 
-    @Activate
-    @Modified
+    @Activate //declares a method that will be invoked after the component has started
+    @Modified //marks the method that will be invoked when the component is modified, typically indicating that the @Reference(s) were changed
     protected void activate(Map<String, Object> properties) {
         configuration = Configurable.createConfigurable(HolidayApiConfiguration.class, properties);
     }
 
     @Override
-    public String holidayApiBaseUrl() {
+    public String getHolidayApiBaseUrl() {
         return configuration.holidayApiBaseUrl();
     }
 }
