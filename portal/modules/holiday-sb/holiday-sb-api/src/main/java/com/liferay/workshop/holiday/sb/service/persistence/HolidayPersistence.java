@@ -174,56 +174,6 @@ public interface HolidayPersistence extends BasePersistence<Holiday> {
 	public int countByUuid(String uuid);
 
 	/**
-	 * Returns the holiday where uuid = &#63; and groupId = &#63; or throws a <code>NoSuchHolidayException</code> if it could not be found.
-	 *
-	 * @param uuid the uuid
-	 * @param groupId the group ID
-	 * @return the matching holiday
-	 * @throws NoSuchHolidayException if a matching holiday could not be found
-	 */
-	public Holiday findByUUID_G(String uuid, long groupId)
-		throws NoSuchHolidayException;
-
-	/**
-	 * Returns the holiday where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	 *
-	 * @param uuid the uuid
-	 * @param groupId the group ID
-	 * @return the matching holiday, or <code>null</code> if a matching holiday could not be found
-	 */
-	public Holiday fetchByUUID_G(String uuid, long groupId);
-
-	/**
-	 * Returns the holiday where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	 *
-	 * @param uuid the uuid
-	 * @param groupId the group ID
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the matching holiday, or <code>null</code> if a matching holiday could not be found
-	 */
-	public Holiday fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache);
-
-	/**
-	 * Removes the holiday where uuid = &#63; and groupId = &#63; from the database.
-	 *
-	 * @param uuid the uuid
-	 * @param groupId the group ID
-	 * @return the holiday that was removed
-	 */
-	public Holiday removeByUUID_G(String uuid, long groupId)
-		throws NoSuchHolidayException;
-
-	/**
-	 * Returns the number of holidays where uuid = &#63; and groupId = &#63;.
-	 *
-	 * @param uuid the uuid
-	 * @param groupId the group ID
-	 * @return the number of matching holidays
-	 */
-	public int countByUUID_G(String uuid, long groupId);
-
-	/**
 	 * Returns all the holidays where dateRequest = &#63;.
 	 *
 	 * @param dateRequest the date request

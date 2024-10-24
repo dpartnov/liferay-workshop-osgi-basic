@@ -53,8 +53,7 @@ public class HolidayActionCommand extends BaseMVCActionCommand {
 
         //Add to database:
         ServiceContext serviceContext = ServiceContextFactory.getInstance(BlogsEntry.class.getName(), actionRequest);
-        holidayLocalService.addHolidayRequest(PortalUtil.getUserId(actionRequest),
-                result.getHolidayName(), dateInputValue, serviceContext);
+        holidayLocalService.addHolidayRequest(result.getHolidayName(), dateInputValue, result.getIsHoliday(), serviceContext);
 
         actionRequest.setAttribute(HolidayPortletKeys.ATTR_IS_HOLIDAY_RESULT, result.getIsHoliday());
         actionRequest.setAttribute(HolidayPortletKeys.ATTR_HOLIDAY_NAME_RESULT, result.getHolidayName());

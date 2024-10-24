@@ -234,18 +234,6 @@ public abstract class HolidayLocalServiceBaseImpl
 	}
 
 	/**
-	 * Returns the holiday matching the UUID and group.
-	 *
-	 * @param uuid the holiday's UUID
-	 * @param groupId the primary key of the group
-	 * @return the matching holiday, or <code>null</code> if a matching holiday could not be found
-	 */
-	@Override
-	public Holiday fetchHolidayByUuidAndGroupId(String uuid, long groupId) {
-		return holidayPersistence.fetchByUUID_G(uuid, groupId);
-	}
-
-	/**
 	 * Returns the holiday with the primary key.
 	 *
 	 * @param holidayRequestId the primary key of the holiday
@@ -337,21 +325,6 @@ public abstract class HolidayLocalServiceBaseImpl
 		throws PortalException {
 
 		return holidayPersistence.findByPrimaryKey(primaryKeyObj);
-	}
-
-	/**
-	 * Returns the holiday matching the UUID and group.
-	 *
-	 * @param uuid the holiday's UUID
-	 * @param groupId the primary key of the group
-	 * @return the matching holiday
-	 * @throws PortalException if a matching holiday could not be found
-	 */
-	@Override
-	public Holiday getHolidayByUuidAndGroupId(String uuid, long groupId)
-		throws PortalException {
-
-		return holidayPersistence.findByUUID_G(uuid, groupId);
 	}
 
 	/**

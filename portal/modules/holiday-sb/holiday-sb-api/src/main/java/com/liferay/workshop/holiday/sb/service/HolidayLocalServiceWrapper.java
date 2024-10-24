@@ -45,12 +45,12 @@ public class HolidayLocalServiceWrapper
 
 	@Override
 	public com.liferay.workshop.holiday.sb.model.Holiday addHolidayRequest(
-			long userId, String holidayName, String dateRequest,
+			String holidayName, String dateRequest, Boolean isHoliday,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _holidayLocalService.addHolidayRequest(
-			userId, holidayName, dateRequest, serviceContext);
+			holidayName, dateRequest, isHoliday, serviceContext);
 	}
 
 	/**
@@ -232,20 +232,6 @@ public class HolidayLocalServiceWrapper
 		return _holidayLocalService.fetchHoliday(holidayRequestId);
 	}
 
-	/**
-	 * Returns the holiday matching the UUID and group.
-	 *
-	 * @param uuid the holiday's UUID
-	 * @param groupId the primary key of the group
-	 * @return the matching holiday, or <code>null</code> if a matching holiday could not be found
-	 */
-	@Override
-	public com.liferay.workshop.holiday.sb.model.Holiday
-		fetchHolidayByUuidAndGroupId(String uuid, long groupId) {
-
-		return _holidayLocalService.fetchHolidayByUuidAndGroupId(uuid, groupId);
-	}
-
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
 		getActionableDynamicQuery() {
@@ -266,22 +252,6 @@ public class HolidayLocalServiceWrapper
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _holidayLocalService.getHoliday(holidayRequestId);
-	}
-
-	/**
-	 * Returns the holiday matching the UUID and group.
-	 *
-	 * @param uuid the holiday's UUID
-	 * @param groupId the primary key of the group
-	 * @return the matching holiday
-	 * @throws PortalException if a matching holiday could not be found
-	 */
-	@Override
-	public com.liferay.workshop.holiday.sb.model.Holiday
-			getHolidayByUuidAndGroupId(String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
-		return _holidayLocalService.getHolidayByUuidAndGroupId(uuid, groupId);
 	}
 
 	/**

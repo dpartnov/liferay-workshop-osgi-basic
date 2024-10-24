@@ -51,14 +51,12 @@ public class HolidayCacheModel implements CacheModel<Holiday>, Externalizable {
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
 		sb.append(", holidayRequestId=");
 		sb.append(holidayRequestId);
-		sb.append(", groupId=");
-		sb.append(groupId);
 		sb.append(", createDate=");
 		sb.append(createDate);
 		sb.append(", dateRequest=");
@@ -84,7 +82,6 @@ public class HolidayCacheModel implements CacheModel<Holiday>, Externalizable {
 		}
 
 		holidayImpl.setHolidayRequestId(holidayRequestId);
-		holidayImpl.setGroupId(groupId);
 
 		if (createDate == Long.MIN_VALUE) {
 			holidayImpl.setCreateDate(null);
@@ -119,8 +116,6 @@ public class HolidayCacheModel implements CacheModel<Holiday>, Externalizable {
 		uuid = objectInput.readUTF();
 
 		holidayRequestId = objectInput.readLong();
-
-		groupId = objectInput.readLong();
 		createDate = objectInput.readLong();
 		dateRequest = objectInput.readUTF();
 
@@ -138,8 +133,6 @@ public class HolidayCacheModel implements CacheModel<Holiday>, Externalizable {
 		}
 
 		objectOutput.writeLong(holidayRequestId);
-
-		objectOutput.writeLong(groupId);
 		objectOutput.writeLong(createDate);
 
 		if (dateRequest == null) {
@@ -161,7 +154,6 @@ public class HolidayCacheModel implements CacheModel<Holiday>, Externalizable {
 
 	public String uuid;
 	public long holidayRequestId;
-	public long groupId;
 	public long createDate;
 	public String dateRequest;
 	public boolean isHoliday;

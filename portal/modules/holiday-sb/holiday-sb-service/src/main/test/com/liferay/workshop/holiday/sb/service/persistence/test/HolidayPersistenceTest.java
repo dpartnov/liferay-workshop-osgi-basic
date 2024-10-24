@@ -12,8 +12,6 @@ import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.Session;
-import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.transaction.Propagation;
@@ -118,8 +116,6 @@ public class HolidayPersistenceTest {
 
 		newHoliday.setUuid(RandomTestUtil.randomString());
 
-		newHoliday.setGroupId(RandomTestUtil.nextLong());
-
 		newHoliday.setCreateDate(RandomTestUtil.nextDate());
 
 		newHoliday.setDateRequest(RandomTestUtil.randomString());
@@ -138,8 +134,6 @@ public class HolidayPersistenceTest {
 			existingHoliday.getHolidayRequestId(),
 			newHoliday.getHolidayRequestId());
 		Assert.assertEquals(
-			existingHoliday.getGroupId(), newHoliday.getGroupId());
-		Assert.assertEquals(
 			Time.getShortTimestamp(existingHoliday.getCreateDate()),
 			Time.getShortTimestamp(newHoliday.getCreateDate()));
 		Assert.assertEquals(
@@ -157,15 +151,6 @@ public class HolidayPersistenceTest {
 		_persistence.countByUuid("null");
 
 		_persistence.countByUuid((String)null);
-	}
-
-	@Test
-	public void testCountByUUID_G() throws Exception {
-		_persistence.countByUUID_G("", RandomTestUtil.nextLong());
-
-		_persistence.countByUUID_G("null", 0L);
-
-		_persistence.countByUUID_G((String)null, 0L);
 	}
 
 	@Test
@@ -203,8 +188,8 @@ public class HolidayPersistenceTest {
 	protected OrderByComparator<Holiday> getOrderByComparator() {
 		return OrderByComparatorFactoryUtil.create(
 			"HOLIDAY_Holiday", "uuid", true, "holidayRequestId", true,
-			"groupId", true, "createDate", true, "dateRequest", true,
-			"isHoliday", true, "holidayName", true);
+			"createDate", true, "dateRequest", true, "isHoliday", true,
+			"holidayName", true);
 	}
 
 	@Test
@@ -414,76 +399,12 @@ public class HolidayPersistenceTest {
 		Assert.assertEquals(0, result.size());
 	}
 
-	@Test
-	public void testResetOriginalValues() throws Exception {
-		Holiday newHoliday = addHoliday();
-
-		_persistence.clearCache();
-
-		_assertOriginalValues(
-			_persistence.findByPrimaryKey(newHoliday.getPrimaryKey()));
-	}
-
-	@Test
-	public void testResetOriginalValuesWithDynamicQueryLoadFromDatabase()
-		throws Exception {
-
-		_testResetOriginalValuesWithDynamicQuery(true);
-	}
-
-	@Test
-	public void testResetOriginalValuesWithDynamicQueryLoadFromSession()
-		throws Exception {
-
-		_testResetOriginalValuesWithDynamicQuery(false);
-	}
-
-	private void _testResetOriginalValuesWithDynamicQuery(boolean clearSession)
-		throws Exception {
-
-		Holiday newHoliday = addHoliday();
-
-		if (clearSession) {
-			Session session = _persistence.openSession();
-
-			session.flush();
-
-			session.clear();
-		}
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Holiday.class, _dynamicQueryClassLoader);
-
-		dynamicQuery.add(
-			RestrictionsFactoryUtil.eq(
-				"holidayRequestId", newHoliday.getHolidayRequestId()));
-
-		List<Holiday> result = _persistence.findWithDynamicQuery(dynamicQuery);
-
-		_assertOriginalValues(result.get(0));
-	}
-
-	private void _assertOriginalValues(Holiday holiday) {
-		Assert.assertEquals(
-			holiday.getUuid(),
-			ReflectionTestUtil.invoke(
-				holiday, "getColumnOriginalValue",
-				new Class<?>[] {String.class}, "uuid_"));
-		Assert.assertEquals(
-			Long.valueOf(holiday.getGroupId()),
-			ReflectionTestUtil.<Long>invoke(
-				holiday, "getColumnOriginalValue",
-				new Class<?>[] {String.class}, "groupId"));
-	}
-
 	protected Holiday addHoliday() throws Exception {
 		long pk = RandomTestUtil.nextLong();
 
 		Holiday holiday = _persistence.create(pk);
 
 		holiday.setUuid(RandomTestUtil.randomString());
-
-		holiday.setGroupId(RandomTestUtil.nextLong());
 
 		holiday.setCreateDate(RandomTestUtil.nextDate());
 

@@ -613,254 +613,6 @@ public class HolidayPersistenceImpl
 	private static final String _FINDER_COLUMN_UUID_UUID_3 =
 		"(holiday.uuid IS NULL OR holiday.uuid = '')";
 
-	private FinderPath _finderPathFetchByUUID_G;
-	private FinderPath _finderPathCountByUUID_G;
-
-	/**
-	 * Returns the holiday where uuid = &#63; and groupId = &#63; or throws a <code>NoSuchHolidayException</code> if it could not be found.
-	 *
-	 * @param uuid the uuid
-	 * @param groupId the group ID
-	 * @return the matching holiday
-	 * @throws NoSuchHolidayException if a matching holiday could not be found
-	 */
-	@Override
-	public Holiday findByUUID_G(String uuid, long groupId)
-		throws NoSuchHolidayException {
-
-		Holiday holiday = fetchByUUID_G(uuid, groupId);
-
-		if (holiday == null) {
-			StringBundler sb = new StringBundler(6);
-
-			sb.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			sb.append("uuid=");
-			sb.append(uuid);
-
-			sb.append(", groupId=");
-			sb.append(groupId);
-
-			sb.append("}");
-
-			if (_log.isDebugEnabled()) {
-				_log.debug(sb.toString());
-			}
-
-			throw new NoSuchHolidayException(sb.toString());
-		}
-
-		return holiday;
-	}
-
-	/**
-	 * Returns the holiday where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	 *
-	 * @param uuid the uuid
-	 * @param groupId the group ID
-	 * @return the matching holiday, or <code>null</code> if a matching holiday could not be found
-	 */
-	@Override
-	public Holiday fetchByUUID_G(String uuid, long groupId) {
-		return fetchByUUID_G(uuid, groupId, true);
-	}
-
-	/**
-	 * Returns the holiday where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	 *
-	 * @param uuid the uuid
-	 * @param groupId the group ID
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the matching holiday, or <code>null</code> if a matching holiday could not be found
-	 */
-	@Override
-	public Holiday fetchByUUID_G(
-		String uuid, long groupId, boolean useFinderCache) {
-
-		uuid = Objects.toString(uuid, "");
-
-		Object[] finderArgs = null;
-
-		if (useFinderCache) {
-			finderArgs = new Object[] {uuid, groupId};
-		}
-
-		Object result = null;
-
-		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByUUID_G, finderArgs, this);
-		}
-
-		if (result instanceof Holiday) {
-			Holiday holiday = (Holiday)result;
-
-			if (!Objects.equals(uuid, holiday.getUuid()) ||
-				(groupId != holiday.getGroupId())) {
-
-				result = null;
-			}
-		}
-
-		if (result == null) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append(_SQL_SELECT_HOLIDAY_WHERE);
-
-			boolean bindUuid = false;
-
-			if (uuid.isEmpty()) {
-				sb.append(_FINDER_COLUMN_UUID_G_UUID_3);
-			}
-			else {
-				bindUuid = true;
-
-				sb.append(_FINDER_COLUMN_UUID_G_UUID_2);
-			}
-
-			sb.append(_FINDER_COLUMN_UUID_G_GROUPID_2);
-
-			String sql = sb.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query query = session.createQuery(sql);
-
-				QueryPos queryPos = QueryPos.getInstance(query);
-
-				if (bindUuid) {
-					queryPos.add(uuid);
-				}
-
-				queryPos.add(groupId);
-
-				List<Holiday> list = query.list();
-
-				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByUUID_G, finderArgs, list);
-					}
-				}
-				else {
-					Holiday holiday = list.get(0);
-
-					result = holiday;
-
-					cacheResult(holiday);
-				}
-			}
-			catch (Exception exception) {
-				throw processException(exception);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		if (result instanceof List<?>) {
-			return null;
-		}
-		else {
-			return (Holiday)result;
-		}
-	}
-
-	/**
-	 * Removes the holiday where uuid = &#63; and groupId = &#63; from the database.
-	 *
-	 * @param uuid the uuid
-	 * @param groupId the group ID
-	 * @return the holiday that was removed
-	 */
-	@Override
-	public Holiday removeByUUID_G(String uuid, long groupId)
-		throws NoSuchHolidayException {
-
-		Holiday holiday = findByUUID_G(uuid, groupId);
-
-		return remove(holiday);
-	}
-
-	/**
-	 * Returns the number of holidays where uuid = &#63; and groupId = &#63;.
-	 *
-	 * @param uuid the uuid
-	 * @param groupId the group ID
-	 * @return the number of matching holidays
-	 */
-	@Override
-	public int countByUUID_G(String uuid, long groupId) {
-		uuid = Objects.toString(uuid, "");
-
-		FinderPath finderPath = _finderPathCountByUUID_G;
-
-		Object[] finderArgs = new Object[] {uuid, groupId};
-
-		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
-
-		if (count == null) {
-			StringBundler sb = new StringBundler(3);
-
-			sb.append(_SQL_COUNT_HOLIDAY_WHERE);
-
-			boolean bindUuid = false;
-
-			if (uuid.isEmpty()) {
-				sb.append(_FINDER_COLUMN_UUID_G_UUID_3);
-			}
-			else {
-				bindUuid = true;
-
-				sb.append(_FINDER_COLUMN_UUID_G_UUID_2);
-			}
-
-			sb.append(_FINDER_COLUMN_UUID_G_GROUPID_2);
-
-			String sql = sb.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query query = session.createQuery(sql);
-
-				QueryPos queryPos = QueryPos.getInstance(query);
-
-				if (bindUuid) {
-					queryPos.add(uuid);
-				}
-
-				queryPos.add(groupId);
-
-				count = (Long)query.uniqueResult();
-
-				finderCache.putResult(finderPath, finderArgs, count);
-			}
-			catch (Exception exception) {
-				throw processException(exception);
-			}
-			finally {
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	private static final String _FINDER_COLUMN_UUID_G_UUID_2 =
-		"holiday.uuid = ? AND ";
-
-	private static final String _FINDER_COLUMN_UUID_G_UUID_3 =
-		"(holiday.uuid IS NULL OR holiday.uuid = '') AND ";
-
-	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 =
-		"holiday.groupId = ?";
-
 	private FinderPath _finderPathWithPaginationFindByDateRequest;
 	private FinderPath _finderPathWithoutPaginationFindByDateRequest;
 	private FinderPath _finderPathCountByDateRequest;
@@ -1423,10 +1175,6 @@ public class HolidayPersistenceImpl
 	public void cacheResult(Holiday holiday) {
 		entityCache.putResult(
 			HolidayImpl.class, holiday.getPrimaryKey(), holiday);
-
-		finderCache.putResult(
-			_finderPathFetchByUUID_G,
-			new Object[] {holiday.getUuid(), holiday.getGroupId()}, holiday);
 	}
 
 	private int _valueObjectFinderCacheListThreshold;
@@ -1494,15 +1242,6 @@ public class HolidayPersistenceImpl
 		for (Serializable primaryKey : primaryKeys) {
 			entityCache.removeResult(HolidayImpl.class, primaryKey);
 		}
-	}
-
-	protected void cacheUniqueFindersCache(HolidayModelImpl holidayModelImpl) {
-		Object[] args = new Object[] {
-			holidayModelImpl.getUuid(), holidayModelImpl.getGroupId()
-		};
-
-		finderCache.putResult(_finderPathCountByUUID_G, args, Long.valueOf(1));
-		finderCache.putResult(_finderPathFetchByUUID_G, args, holidayModelImpl);
 	}
 
 	/**
@@ -1670,8 +1409,6 @@ public class HolidayPersistenceImpl
 		}
 
 		entityCache.putResult(HolidayImpl.class, holidayModelImpl, false, true);
-
-		cacheUniqueFindersCache(holidayModelImpl);
 
 		if (isNew) {
 			holiday.setNew(false);
@@ -1973,16 +1710,6 @@ public class HolidayPersistenceImpl
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid",
 			new String[] {String.class.getName()}, new String[] {"uuid_"},
 			false);
-
-		_finderPathFetchByUUID_G = new FinderPath(
-			FINDER_CLASS_NAME_ENTITY, "fetchByUUID_G",
-			new String[] {String.class.getName(), Long.class.getName()},
-			new String[] {"uuid_", "groupId"}, true);
-
-		_finderPathCountByUUID_G = new FinderPath(
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUUID_G",
-			new String[] {String.class.getName(), Long.class.getName()},
-			new String[] {"uuid_", "groupId"}, false);
 
 		_finderPathWithPaginationFindByDateRequest = new FinderPath(
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByDateRequest",

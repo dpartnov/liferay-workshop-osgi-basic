@@ -10,10 +10,6 @@
 
 		<column name="holidayRequestId" primary="true" type="long" />
 
-		<!-- Group instance -->
-
-		<column name="groupId" type="long" />
-
 		<!-- Audit fields -->
 
 		<column name="createDate" type="Date" />

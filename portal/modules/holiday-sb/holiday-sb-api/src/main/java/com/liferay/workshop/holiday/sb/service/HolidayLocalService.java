@@ -68,7 +68,7 @@ public interface HolidayLocalService
 	public Holiday addHoliday(Holiday holiday);
 
 	public Holiday addHolidayRequest(
-			long userId, String holidayName, String dateRequest,
+			String holidayName, String dateRequest, Boolean isHoliday,
 			ServiceContext serviceContext)
 		throws PortalException;
 
@@ -196,16 +196,6 @@ public interface HolidayLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Holiday fetchHoliday(long holidayRequestId);
 
-	/**
-	 * Returns the holiday matching the UUID and group.
-	 *
-	 * @param uuid the holiday's UUID
-	 * @param groupId the primary key of the group
-	 * @return the matching holiday, or <code>null</code> if a matching holiday could not be found
-	 */
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Holiday fetchHolidayByUuidAndGroupId(String uuid, long groupId);
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 
@@ -218,18 +208,6 @@ public interface HolidayLocalService
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public Holiday getHoliday(long holidayRequestId) throws PortalException;
-
-	/**
-	 * Returns the holiday matching the UUID and group.
-	 *
-	 * @param uuid the holiday's UUID
-	 * @param groupId the primary key of the group
-	 * @return the matching holiday
-	 * @throws PortalException if a matching holiday could not be found
-	 */
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public Holiday getHolidayByUuidAndGroupId(String uuid, long groupId)
-		throws PortalException;
 
 	/**
 	 * Returns a range of all the holidays.

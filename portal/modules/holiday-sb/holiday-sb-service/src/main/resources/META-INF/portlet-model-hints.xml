@@ -4,7 +4,6 @@
 	<model name="com.liferay.workshop.holiday.sb.model.Holiday">
 		<field name="uuid" type="String" />
 		<field name="holidayRequestId" type="long" />
-		<field name="groupId" type="long" />
 		<field name="createDate" type="Date" />
 		<field name="dateRequest" type="String" />
 		<field name="isHoliday" type="boolean" />

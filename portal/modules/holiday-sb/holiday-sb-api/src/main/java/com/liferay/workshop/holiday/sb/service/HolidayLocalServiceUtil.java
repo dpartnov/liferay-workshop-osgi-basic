@@ -51,12 +51,12 @@ public class HolidayLocalServiceUtil {
 	}
 
 	public static Holiday addHolidayRequest(
-			long userId, String holidayName, String dateRequest,
+			String holidayName, String dateRequest, Boolean isHoliday,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws PortalException {
 
 		return getService().addHolidayRequest(
-			userId, holidayName, dateRequest, serviceContext);
+			holidayName, dateRequest, isHoliday, serviceContext);
 	}
 
 	/**
@@ -209,19 +209,6 @@ public class HolidayLocalServiceUtil {
 		return getService().fetchHoliday(holidayRequestId);
 	}
 
-	/**
-	 * Returns the holiday matching the UUID and group.
-	 *
-	 * @param uuid the holiday's UUID
-	 * @param groupId the primary key of the group
-	 * @return the matching holiday, or <code>null</code> if a matching holiday could not be found
-	 */
-	public static Holiday fetchHolidayByUuidAndGroupId(
-		String uuid, long groupId) {
-
-		return getService().fetchHolidayByUuidAndGroupId(uuid, groupId);
-	}
-
 	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery
 		getActionableDynamicQuery() {
 
@@ -239,20 +226,6 @@ public class HolidayLocalServiceUtil {
 		throws PortalException {
 
 		return getService().getHoliday(holidayRequestId);
-	}
-
-	/**
-	 * Returns the holiday matching the UUID and group.
-	 *
-	 * @param uuid the holiday's UUID
-	 * @param groupId the primary key of the group
-	 * @return the matching holiday
-	 * @throws PortalException if a matching holiday could not be found
-	 */
-	public static Holiday getHolidayByUuidAndGroupId(String uuid, long groupId)
-		throws PortalException {
-
-		return getService().getHolidayByUuidAndGroupId(uuid, groupId);
 	}
 
 	/**

@@ -27,8 +27,6 @@ public class HolidayTable extends BaseTable<HolidayTable> {
 		"uuid_", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
 	public final Column<HolidayTable, Long> holidayRequestId = createColumn(
 		"holidayRequestId", Long.class, Types.BIGINT, Column.FLAG_PRIMARY);
-	public final Column<HolidayTable, Long> groupId = createColumn(
-		"groupId", Long.class, Types.BIGINT, Column.FLAG_DEFAULT);
 	public final Column<HolidayTable, Date> createDate = createColumn(
 		"createDate", Date.class, Types.TIMESTAMP, Column.FLAG_DEFAULT);
 	public final Column<HolidayTable, String> dateRequest = createColumn(

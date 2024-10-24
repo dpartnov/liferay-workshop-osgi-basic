@@ -13,7 +13,6 @@ import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.ModelWrapper;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.workshop.holiday.sb.model.Holiday;
@@ -58,9 +57,8 @@ public class HolidayModelImpl
 
 	public static final Object[][] TABLE_COLUMNS = {
 		{"uuid_", Types.VARCHAR}, {"holidayRequestId", Types.BIGINT},
-		{"groupId", Types.BIGINT}, {"createDate", Types.TIMESTAMP},
-		{"dateRequest", Types.VARCHAR}, {"isHoliday", Types.BOOLEAN},
-		{"holidayName", Types.VARCHAR}
+		{"createDate", Types.TIMESTAMP}, {"dateRequest", Types.VARCHAR},
+		{"isHoliday", Types.BOOLEAN}, {"holidayName", Types.VARCHAR}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -69,7 +67,6 @@ public class HolidayModelImpl
 	static {
 		TABLE_COLUMNS_MAP.put("uuid_", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("holidayRequestId", Types.BIGINT);
-		TABLE_COLUMNS_MAP.put("groupId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("dateRequest", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("isHoliday", Types.BOOLEAN);
@@ -77,7 +74,7 @@ public class HolidayModelImpl
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table HOLIDAY_Holiday (uuid_ VARCHAR(75) null,holidayRequestId LONG not null primary key,groupId LONG,createDate DATE null,dateRequest VARCHAR(75) null,isHoliday BOOLEAN,holidayName VARCHAR(75) null)";
+		"create table HOLIDAY_Holiday (uuid_ VARCHAR(75) null,holidayRequestId LONG not null primary key,createDate DATE null,dateRequest VARCHAR(75) null,isHoliday BOOLEAN,holidayName VARCHAR(75) null)";
 
 	public static final String TABLE_SQL_DROP = "drop table HOLIDAY_Holiday";
 
@@ -103,13 +100,7 @@ public class HolidayModelImpl
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #getColumnBitmask(String)}
 	 */
 	@Deprecated
-	public static final long GROUPID_COLUMN_BITMASK = 2L;
-
-	/**
-	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #getColumnBitmask(String)}
-	 */
-	@Deprecated
-	public static final long UUID_COLUMN_BITMASK = 4L;
+	public static final long UUID_COLUMN_BITMASK = 2L;
 
 	/**
 	 * @deprecated As of Athanasius (7.3.x), with no direct replacement
@@ -221,7 +212,6 @@ public class HolidayModelImpl
 			attributeGetterFunctions.put("uuid", Holiday::getUuid);
 			attributeGetterFunctions.put(
 				"holidayRequestId", Holiday::getHolidayRequestId);
-			attributeGetterFunctions.put("groupId", Holiday::getGroupId);
 			attributeGetterFunctions.put("createDate", Holiday::getCreateDate);
 			attributeGetterFunctions.put(
 				"dateRequest", Holiday::getDateRequest);
@@ -249,8 +239,6 @@ public class HolidayModelImpl
 			attributeSetterBiConsumers.put(
 				"holidayRequestId",
 				(BiConsumer<Holiday, Long>)Holiday::setHolidayRequestId);
-			attributeSetterBiConsumers.put(
-				"groupId", (BiConsumer<Holiday, Long>)Holiday::setGroupId);
 			attributeSetterBiConsumers.put(
 				"createDate",
 				(BiConsumer<Holiday, Date>)Holiday::setCreateDate);
@@ -310,29 +298,6 @@ public class HolidayModelImpl
 		}
 
 		_holidayRequestId = holidayRequestId;
-	}
-
-	@Override
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	@Override
-	public void setGroupId(long groupId) {
-		if (_columnOriginalValues == Collections.EMPTY_MAP) {
-			_setColumnOriginalValues();
-		}
-
-		_groupId = groupId;
-	}
-
-	/**
-	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
-	 *             #getColumnOriginalValue(String)}
-	 */
-	@Deprecated
-	public long getOriginalGroupId() {
-		return GetterUtil.getLong(this.<Long>getColumnOriginalValue("groupId"));
 	}
 
 	@Override
@@ -473,7 +438,6 @@ public class HolidayModelImpl
 
 		holidayImpl.setUuid(getUuid());
 		holidayImpl.setHolidayRequestId(getHolidayRequestId());
-		holidayImpl.setGroupId(getGroupId());
 		holidayImpl.setCreateDate(getCreateDate());
 		holidayImpl.setDateRequest(getDateRequest());
 		holidayImpl.setIsHoliday(isIsHoliday());
@@ -491,7 +455,6 @@ public class HolidayModelImpl
 		holidayImpl.setUuid(this.<String>getColumnOriginalValue("uuid_"));
 		holidayImpl.setHolidayRequestId(
 			this.<Long>getColumnOriginalValue("holidayRequestId"));
-		holidayImpl.setGroupId(this.<Long>getColumnOriginalValue("groupId"));
 		holidayImpl.setCreateDate(
 			this.<Date>getColumnOriginalValue("createDate"));
 		holidayImpl.setDateRequest(
@@ -583,8 +546,6 @@ public class HolidayModelImpl
 
 		holidayCacheModel.holidayRequestId = getHolidayRequestId();
 
-		holidayCacheModel.groupId = getGroupId();
-
 		Date createDate = getCreateDate();
 
 		if (createDate != null) {
@@ -675,7 +636,6 @@ public class HolidayModelImpl
 
 	private String _uuid;
 	private long _holidayRequestId;
-	private long _groupId;
 	private Date _createDate;
 	private String _dateRequest;
 	private boolean _isHoliday;
@@ -713,7 +673,6 @@ public class HolidayModelImpl
 
 		_columnOriginalValues.put("uuid_", _uuid);
 		_columnOriginalValues.put("holidayRequestId", _holidayRequestId);
-		_columnOriginalValues.put("groupId", _groupId);
 		_columnOriginalValues.put("createDate", _createDate);
 		_columnOriginalValues.put("dateRequest", _dateRequest);
 		_columnOriginalValues.put("isHoliday", _isHoliday);
@@ -745,15 +704,13 @@ public class HolidayModelImpl
 
 		columnBitmasks.put("holidayRequestId", 2L);
 
-		columnBitmasks.put("groupId", 4L);
+		columnBitmasks.put("createDate", 4L);
 
-		columnBitmasks.put("createDate", 8L);
+		columnBitmasks.put("dateRequest", 8L);
 
-		columnBitmasks.put("dateRequest", 16L);
+		columnBitmasks.put("isHoliday", 16L);
 
-		columnBitmasks.put("isHoliday", 32L);
-
-		columnBitmasks.put("holidayName", 64L);
+		columnBitmasks.put("holidayName", 32L);
 
 		_columnBitmasks = Collections.unmodifiableMap(columnBitmasks);
 	}

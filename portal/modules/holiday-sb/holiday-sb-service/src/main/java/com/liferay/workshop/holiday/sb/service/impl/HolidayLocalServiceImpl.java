@@ -7,7 +7,6 @@ package com.liferay.workshop.holiday.sb.service.impl;
 
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.workshop.holiday.sb.model.Holiday;
 import com.liferay.workshop.holiday.sb.service.base.HolidayLocalServiceBaseImpl;
@@ -39,24 +38,20 @@ public class HolidayLocalServiceImpl extends HolidayLocalServiceBaseImpl {
 	@Reference
 	protected HolidayPersistence _holidayPersistence;
 
-	public Holiday addHolidayRequest(long userId, String holidayName, String dateRequest,
+	public Holiday addHolidayRequest(String holidayName, String dateRequest, Boolean isHoliday,
 									 ServiceContext serviceContext) throws PortalException {
-
-		long groupId = serviceContext.getScopeGroupId();
-
-		User user = _userLocalService.getUserById(userId);
 
 		long entryId = _counterLocalService.increment();
 
 		Holiday entry = _holidayPersistence.create(entryId);
 
 		entry.setUuid(serviceContext.getUuid());
-		entry.setGroupId(groupId);
 		entry.setCreateDate(serviceContext.getCreateDate(Date.from(Instant.now())));
 		entry.setExpandoBridgeAttributes(serviceContext);
 
 		entry.setHolidayName(holidayName);
 		entry.setDateRequest(dateRequest);
+		entry.setIsHoliday(isHoliday);
 
 		_holidayPersistence.update(entry);
 

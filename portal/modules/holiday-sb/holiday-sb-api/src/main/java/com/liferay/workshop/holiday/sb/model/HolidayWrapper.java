@@ -35,7 +35,6 @@ public class HolidayWrapper
 
 		attributes.put("uuid", getUuid());
 		attributes.put("holidayRequestId", getHolidayRequestId());
-		attributes.put("groupId", getGroupId());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("dateRequest", getDateRequest());
 		attributes.put("isHoliday", isIsHoliday());
@@ -56,12 +55,6 @@ public class HolidayWrapper
 
 		if (holidayRequestId != null) {
 			setHolidayRequestId(holidayRequestId);
-		}
-
-		Long groupId = (Long)attributes.get("groupId");
-
-		if (groupId != null) {
-			setGroupId(groupId);
 		}
 
 		Date createDate = (Date)attributes.get("createDate");
@@ -112,16 +105,6 @@ public class HolidayWrapper
 	@Override
 	public String getDateRequest() {
 		return model.getDateRequest();
-	}
-
-	/**
-	 * Returns the group ID of this holiday.
-	 *
-	 * @return the group ID of this holiday
-	 */
-	@Override
-	public long getGroupId() {
-		return model.getGroupId();
 	}
 
 	/**
@@ -207,16 +190,6 @@ public class HolidayWrapper
 	@Override
 	public void setDateRequest(String dateRequest) {
 		model.setDateRequest(dateRequest);
-	}
-
-	/**
-	 * Sets the group ID of this holiday.
-	 *
-	 * @param groupId the group ID of this holiday
-	 */
-	@Override
-	public void setGroupId(long groupId) {
-		model.setGroupId(groupId);
 	}
 
 	/**

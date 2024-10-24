@@ -76,20 +76,6 @@ public interface HolidayModel extends BaseModel<Holiday> {
 	public void setHolidayRequestId(long holidayRequestId);
 
 	/**
-	 * Returns the group ID of this holiday.
-	 *
-	 * @return the group ID of this holiday
-	 */
-	public long getGroupId();
-
-	/**
-	 * Sets the group ID of this holiday.
-	 *
-	 * @param groupId the group ID of this holiday
-	 */
-	public void setGroupId(long groupId);
-
-	/**
 	 * Returns the create date of this holiday.
 	 *
 	 * @return the create date of this holiday
