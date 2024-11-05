@@ -14,6 +14,7 @@
 
     <modules>
         <module>portal/modules</module>
+        <module>portal/customizations</module>
     </modules>
 
     <dependencyManagement>
