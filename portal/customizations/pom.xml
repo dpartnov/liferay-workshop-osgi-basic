@@ -11,6 +11,7 @@
   <modules>
     <module>model-listener</module>
     <module>theme-dynamic-include</module>
+    <module>custom-login</module>
   </modules>
   <build>
     <plugins>
