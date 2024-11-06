@@ -15,6 +15,7 @@
     <module>portlet-filter</module>
     <module>servlet-filter</module>
     <module>mvc-action-command</module>
+    <module>service-wrapper</module>
   </modules>
   <build>
     <plugins>
