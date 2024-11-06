@@ -1,0 +1,3 @@
+Bundle-Name: Mvc action command
+Bundle-SymbolicName: com.liferay.workshop.mvc.action.command
+Bundle-Version: 1.0.0

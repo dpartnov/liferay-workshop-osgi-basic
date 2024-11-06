@@ -1,5 +1,6 @@
 package com.liferay.workshop.portlet.filter;
 
+import com.liferay.blogs.constants.BlogsPortletKeys;
 import org.osgi.service.component.annotations.Component;
 
 import javax.portlet.PortletException;
@@ -17,7 +18,7 @@ import java.util.concurrent.atomic.LongAdder;
  */
 @Component(
         property = {
-                "javax.portlet.name=com_liferay_blogs_web_portlet_BlogsPortlet",
+                "javax.portlet.name=" + BlogsPortletKeys.BLOGS,
                 "service.ranking:Integer=100"
         },
         service = PortletFilter.class

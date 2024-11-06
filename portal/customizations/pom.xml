@@ -14,6 +14,7 @@
     <module>custom-login</module>
     <module>portlet-filter</module>
     <module>servlet-filter</module>
+    <module>mvc-action-command</module>
   </modules>
   <build>
     <plugins>
