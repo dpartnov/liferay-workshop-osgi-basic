@@ -6,7 +6,7 @@
 
     <parent>
         <groupId>com.liferay.workshop</groupId>
-        <artifactId>modules</artifactId>
+        <artifactId>customizations</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
