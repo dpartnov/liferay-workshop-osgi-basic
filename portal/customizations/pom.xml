@@ -16,6 +16,7 @@
     <module>servlet-filter</module>
     <module>mvc-action-command</module>
     <module>service-wrapper</module>
+    <module>service-override</module>
   </modules>
   <build>
     <plugins>
