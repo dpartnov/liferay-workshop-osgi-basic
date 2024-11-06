@@ -13,6 +13,7 @@
     <module>theme-dynamic-include</module>
     <module>custom-login</module>
     <module>portlet-filter</module>
+    <module>servlet-filter</module>
   </modules>
   <build>
     <plugins>

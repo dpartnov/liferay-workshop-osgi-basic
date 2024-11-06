@@ -51,18 +51,6 @@
             <artifactId>slf4j-api</artifactId>
             <version>1.7.25</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.liferay.workshop</groupId>
-            <artifactId>holiday-api-client</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.liferay.workshop</groupId>
-            <artifactId>holiday-sb-api</artifactId>
-            <version>1.0</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
     <build>

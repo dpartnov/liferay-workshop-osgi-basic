@@ -1,0 +1,3 @@
+Bundle-Name: Servlet filter
+Bundle-SymbolicName: com.liferay.workshop.servlet.filter
+Bundle-Version: 1.0.0
